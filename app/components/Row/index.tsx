@@ -17,6 +17,7 @@ export const Row: React.FC<Character> = ({ name, gender, birth_year, url }) => {
       </h3>
       <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
         Gender: {gender}
+        <br />
         Birth year: {birth_year}
       </p>
     </div>

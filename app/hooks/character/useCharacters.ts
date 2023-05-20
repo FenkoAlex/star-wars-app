@@ -3,9 +3,11 @@ import { debounce } from 'lodash'
 
 import { getCharacters } from '../../api';
 import { Character } from '../../type';
+import { count } from "console";
 
 export const useCharacters = (initSearch: string = '') => {
-  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState(initSearch);
   const [loading, setLoading] = useState(true);
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -14,6 +16,7 @@ export const useCharacters = (initSearch: string = '') => {
     setLoading(true);
     getCharacters(search, page).then(response => {
       setCharacters(response.data.results);
+      setCount(response.data.count);
     }).finally(() => {
       setLoading(false);
     })
@@ -26,6 +29,6 @@ export const useCharacters = (initSearch: string = '') => {
   return {
     page, setPage,
     search, setSearch,
-    characters, loading
+    characters, loading, count
   }
 }
